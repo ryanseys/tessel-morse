@@ -1,0 +1,27 @@
+{
+  "name": "tessel-morse",
+  "version": "0.0.1",
+  "description": "Morse code with LEDs on Tessel",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanseys/tessel-morse.git"
+  },
+  "keywords": [
+    "tessel",
+    "morse",
+    "code",
+    "led",
+    "lights",
+    "blink",
+    "flash"
+  ],
+  "author": "Ryan Seys <ryan@ryanseys.com>",
+  "license": "MIT",
+  "hardware": {
+    "./README.md": false,
+    "./LICENSE": false
+  }
+}
