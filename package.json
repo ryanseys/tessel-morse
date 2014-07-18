@@ -20,7 +20,7 @@
   "author": "Ryan Seys <ryan@ryanseys.com>",
   "license": "MIT",
   "hardware": {
-    "./README.md": true,
+    "./README.md": false,
     "./LICENSE": false
   },
   "dependencies": {

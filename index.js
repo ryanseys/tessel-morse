@@ -1,20 +1,8 @@
-var fs = require('fs');
-var append = require('appendage');
-var morse = require('morse-stream');
 var tessel = require('tessel');
 var through = require('through');
-
 var led = tessel.led[1];
-
 var DOT_DURATION = 250; // ms
-
 var blinkQueue = [];
-var firstRun = true;
-
-// super hacky... :(
-setTimeout(function() {
-  checkQueue();
-}, 2000);
 
 function addToQueue(duration) {
   blinkQueue.push(duration);
@@ -37,14 +25,12 @@ function checkQueue() {
   }
 }
 
-function morse_blink() {
+function morse_blink(WORD_DELIMITER) {
   var stream = through(blink_it);
   return stream;
 
   function blink_it(data) {
     var phrase = data.toString();
-    console.log(phrase);
-
     for (var i = 0, l = phrase.length; i < l; ++i) {
       blink_word(phrase[i]);
     }
@@ -55,7 +41,7 @@ function morse_blink() {
 
     for (var i = 0, l = dotsAndDashes.length; i < l; ++i) {
       character = dotsAndDashes[i];
-      if (character === '$') {
+      if (character === WORD_DELIMITER) {
         addToQueue([0, 7]);
       } else if (character === '.') {
         addToQueue([1, 1]);
@@ -70,8 +56,8 @@ function morse_blink() {
   }
 }
 
-fs.createReadStream('README.md')
-  .pipe(morse())
-  .pipe(append({ after: '$' }))
-  .pipe(morse_blink());
-
+/**
+ * Exports morse_blink
+ * @type {function}
+ */
+module.exports = morse_blink;
