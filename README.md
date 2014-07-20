@@ -11,22 +11,40 @@ npm install tessel-morse
 ## Usage
 
 ``` js
-var fs = require('fs');
-var append = require('appendage');
-var morse = require('morse-stream');
-var morse_blink = require('tessel-morse');
+var morseBlink = require('tessel-morse');
+var str = morseBlink('hello world');
+console.log(str); // .... . .-.. .-.. --- ....... .-- --- .-. .-.. -..
+```
 
-var WORD_DELIMITER = '$';
+## Options
 
-fs.createReadStream('test.txt')
-  .pipe(morse())
-  .pipe(append({ after: WORD_DELIMITER }))
-  .pipe(morse_blink(WORD_DELIMITER));
+All options are passed via the second `options` parameter.
+
+### Duration: `options.duration`
+
+You can specify the duration of a dot (in ms). All other durations
+(for dash, space) are made relative to this duration automatically.
+
+Default dot duration is 200.
+
+``` js
+var morseBlink = require('tessel-morse');
+morseBlink('hello world', { duration: 100 }); // dot duration now 100ms
+```
+
+### LED: `options.led`
+
+You can specify the led to blink by index.
+By default, `tessel.led[0]` (green led) is used.
+
+``` js
+var morseBlink = require('tessel-morse');
+morseBlink('hello world', { led: 1 }); // blink blue led instead
 ```
 
 ## Contributing
 
-It's as simple as creating an issue or sending a pull request! :)
+Simply create an issue or send a pull request! :)
 
 ## License
 
