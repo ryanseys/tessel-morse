@@ -10,11 +10,17 @@ npm install tessel-morse
 
 ## Usage
 
+Run the following script on your tessel:
+
 ``` js
 var morseBlink = require('tessel-morse');
 var str = morseBlink('hello world');
 console.log(str); // .... . .-.. .-.. --- ....... .-- --- .-. .-.. -..
 ```
+
+Look at your Tessel! It should be blinking :)
+
+[See it in action here.](http://www.gfycat.com/OilyPeskyBandicoot)
 
 ## Options
 
