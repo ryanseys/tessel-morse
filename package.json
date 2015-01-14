@@ -1,6 +1,6 @@
 {
   "name": "tessel-morse",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Communicate in Morse code using your Tessel",
   "main": "index.js",
   "scripts": {},
