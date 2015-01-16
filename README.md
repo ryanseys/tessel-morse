@@ -48,6 +48,34 @@ var morseBlink = require('tessel-morse');
 morseBlink('hello world', { led: 1 }); // blink blue led instead
 ```
 
+### On|Off: `options.on`|`options.off`
+
+You can specify a custom function that will be called
+when the signal is switched, for instance to trigger a relay.
+By default, `tessel.ledOn` and `tessel.ledOff` (onboard led) 
+are used.
+
+``` js
+var morseBlink = require('tessel-morse')
+  , Relay = require('relay-mono')
+  , relay = Relay.use(tessel.port['A']);
+  
+
+relay.on('ready', function ready() {
+  morseBlink('hello world', { on: function on() {
+    morse('hello world', {
+      on: function on() {
+        relay.turnOn(1)
+      },
+    
+      off: function off() {
+        relay.turnOff(1)
+      }
+    })
+  });
+}); 
+```
+
 ## Contributing
 
 Simply create an issue or send a pull request! :)
